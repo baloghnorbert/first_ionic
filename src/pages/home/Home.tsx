@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
 
   const [players, setPlayers] = useState<Player[]>([]); //players a getter setPlayers a setter
   const [loading, setLoading] = useState<boolean>(true);
-  useEffect(() => {
+  useEffect(() => { //ez az onloadnak megfelelő --> amikor az oldal töltödik be akkor csinálja meg 
     //1 másodperces timert ad
     setTimeout(() => {
       // Ez akkor fut le amikor az oldal betöltődik , []  helyére lehet írni a feltételt ha szeretnénk.
@@ -20,13 +20,17 @@ const HomePage: React.FC = () => {
     }, 1000)
   }, []);
 
+  //a komponsens usestate segítségével tárolja az adatokat --> ha a state válozik akkor újra fogja renderelni
+
   const loader = (): JSX.Element =>
-    <Loader type="Puff"
-      color="#00BFFF"
-      height={100}
-      width={100}
-      visible={loading}
-    />
+    <div className="loader">
+      <Loader type="BallTriangle"
+        color="red"
+        height={100}
+        width={100}
+        visible={loading}
+      />
+    </div>
 
   const list = (): JSX.Element =>
     <IonList>
@@ -37,7 +41,6 @@ const HomePage: React.FC = () => {
         players.map((player: Player, index: number) => <ListCompoent player={player} key={index} />)
       }
     </IonList>
-
 
   return (
     <IonPage>  {/* mindig ezzel kezdődik az oldal */}

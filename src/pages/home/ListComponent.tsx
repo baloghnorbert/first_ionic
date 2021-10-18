@@ -7,8 +7,9 @@ interface IProps {
 }
 
 const ListCompoent: React.FC<IProps> = (props: IProps): JSX.Element => {
+
     return (
-        <IonItem>
+        <IonItem routerLink={`/profile/${props.player.id}`}>  {/* ezzl az addott elemre kattintva át kell navigálnia */}
             <IonAvatar slot="start">
                 <img src={props.player.imageLink} alt={props.player.name} />
             </IonAvatar>
